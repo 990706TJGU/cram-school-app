@@ -13,10 +13,6 @@
     {
       "src": "/api/(.*)",
       "dest": "https://cram-school-app-production.up.railway.app/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
     }
   ]
 } 
