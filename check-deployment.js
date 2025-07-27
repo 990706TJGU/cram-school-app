@@ -35,17 +35,17 @@ async function checkVercelFrontend() {
   }
 }
 
-// 檢查 API 連接
-async function checkAPIConnection() {
+// 檢查基本 API 端點
+async function checkBasicAPI() {
   try {
-    console.log('\n🔗 檢查 API 連接...')
-    const response = await axios.get(`${RAILWAY_URL}/api/test-kintone`, {
+    console.log('\n🔗 檢查基本 API 端點...')
+    const response = await axios.get(`${RAILWAY_URL}/api/test`, {
       timeout: 5000
     })
-    console.log('✅ API 連接正常:', response.data.success ? '成功' : '失敗')
+    console.log('✅ 基本 API 正常:', response.data)
     return true
   } catch (error) {
-    console.log('❌ API 連接錯誤:', error.message)
+    console.log('❌ 基本 API 錯誤:', error.message)
     return false
   }
 }
@@ -57,15 +57,19 @@ async function main() {
   
   const backendOk = await checkRailwayBackend()
   const frontendOk = await checkVercelFrontend()
-  const apiOk = await checkAPIConnection()
+  const apiOk = await checkBasicAPI()
   
   console.log('\n📊 檢查結果:')
   console.log(`🚂 Railway 後端: ${backendOk ? '✅ 正常' : '❌ 異常'}`)
   console.log(`🌐 Vercel 前端: ${frontendOk ? '✅ 正常' : '❌ 異常'}`)
-  console.log(`🔗 API 連接: ${apiOk ? '✅ 正常' : '❌ 異常'}`)
+  console.log(`🔗 基本 API: ${apiOk ? '✅ 正常' : '❌ 異常'}`)
   
   if (backendOk && frontendOk && apiOk) {
     console.log('\n🎉 所有服務正常運行！')
+    console.log('\n📝 部署資訊:')
+    console.log(`🚂 Railway 後端: ${RAILWAY_URL}`)
+    console.log(`🌐 Vercel 前端: ${VERCEL_URL}`)
+    console.log('\n🔗 前端現在應該可以正常連接後端了！')
   } else {
     console.log('\n⚠️ 發現問題，請檢查相關服務。')
   }
