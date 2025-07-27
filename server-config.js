@@ -79,7 +79,7 @@ const loadConfig = () => {
       kintone: {
         domain: "yqconstruction.cybozu.com",
         username: "Administrator",
-        password: "Yqconstruction@2024",
+        password: "HskX3z5yxKnA",
         apps: {
           studentAuth: "222",
           teacherAuth: "224",
@@ -105,7 +105,11 @@ const loadConfig = () => {
 
 const CONFIG = loadConfig()
 const app = express()
-const PORT = CONFIG.server.port
+const PORT = process.env.PORT || CONFIG.server.port || 3000
+
+console.log(`🚀 使用端口: ${PORT}`)
+console.log(`🌍 環境: ${process.env.NODE_ENV || 'development'}`)
+console.log(`🔧 Railway PORT: ${process.env.PORT || '未設定'}`)
 
 // 中間件
 app.use(cors({
