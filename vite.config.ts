@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': '/src',
+      '@': resolve(__dirname, 'src'),
     },
   },
   server: {
@@ -18,6 +19,18 @@ export default defineConfig({
         target: 'http://localhost:8000',
         changeOrigin: true,
         secure: false,
+      },
+    },
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          antd: ['antd'],
+        },
       },
     },
   },
