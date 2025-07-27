@@ -1,0 +1,21 @@
+{
+  "kintone": {
+    "domain": "your-domain.cybozu.com",
+    "username": "your-username",
+    "password": "your-password",
+    "apps": {
+      "studentAuth": "222",
+      "teacherAuth": "224",
+      "lineBinding": "225"
+    }
+  },
+  "server": {
+    "port": 3000,
+    "cors": {
+      "origins": [
+        "https://your-app.vercel.app",
+        "https://your-domain.com"
+      ]
+    }
+  }
+} 
