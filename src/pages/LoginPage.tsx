@@ -149,7 +149,7 @@ const LoginPage: React.FC = () => {
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <BookOutlined style={{ fontSize: '48px', color: '#1890ff', marginBottom: '16px' }} />
           <Title level={2} style={{ margin: 0, color: '#1890ff' }}>
-            個別指導系統
+            李鋒個別指導系統
           </Title>
           <Text type="secondary">補習班管理平台</Text>
         </div>

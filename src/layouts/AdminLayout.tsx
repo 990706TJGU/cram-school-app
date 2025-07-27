@@ -97,7 +97,7 @@ const AdminLayout: React.FC = () => {
           fontWeight: 'bold',
           borderBottom: '1px solid #303030',
         }}>
-          {collapsed ? 'CS' : '個別指導系統'}
+          {collapsed ? 'CS' : '李鋒個別指導系統'}
         </div>
         
         <Menu
@@ -131,7 +131,7 @@ const AdminLayout: React.FC = () => {
               }}
             />
             <Text strong style={{ fontSize: '18px', marginLeft: '16px' }}>
-              {menuItems.find(item => item.key === location.pathname)?.label || '個別指導系統'}
+              {menuItems.find(item => item.key === location.pathname)?.label || '李鋒個別指導系統'}
             </Text>
           </div>
 

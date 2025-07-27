@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>個別指導系統</title>
+        <title>李鋒個別指導系統</title>
         <meta name="description" content="補習班個別指導管理系統" />
       </Helmet>
 

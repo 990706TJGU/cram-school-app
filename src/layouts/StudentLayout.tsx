@@ -160,7 +160,7 @@ const StudentLayout: React.FC = () => {
               WebkitTextFillColor: 'transparent',
               fontWeight: '700',
             }}>
-              個別指導系統
+              李鋒個別指導系統
             </div>
           )}
         </div>
@@ -198,7 +198,7 @@ const StudentLayout: React.FC = () => {
               }}
             />
             <Text strong style={{ fontSize: '18px', marginLeft: '16px' }}>
-              {menuItems.find(item => item.key === location.pathname)?.label || '個別指導系統'}
+              {menuItems.find(item => item.key === location.pathname)?.label || '李鋒個別指導系統'}
             </Text>
           </div>
 

@@ -126,7 +126,7 @@ const SimpleLoginPage: React.FC = () => {
             WebkitTextFillColor: 'transparent',
             fontWeight: '700',
           }}>
-            個別指導系統
+            李鋒個別指導系統
           </Title>
           <Text style={{ 
             color: '#64748b', 
