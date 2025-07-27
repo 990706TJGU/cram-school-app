@@ -52,6 +52,15 @@
   - 更新構建腳本為 `"build": "npx vite build"`
   - 優點：繞過權限問題，使用 npm 的 npx 機制
 
+### 9. 最終權限問題解決方案 ⭐ 最終修復
+- **問題**: 即使使用 `npx` 仍然遇到 Vite 權限問題
+- **根本原因**: Vercel 環境中的執行檔權限問題持續存在
+- **最終解決方案**: 
+  - 使用 Node.js 直接執行 Vite 的 JavaScript 檔案
+  - 更新構建腳本為 `"build": "node ./node_modules/vite/bin/vite.js build"`
+  - 完全繞過執行檔權限問題，直接執行 JavaScript 程式碼
+  - 優點：最穩定、最可靠、構建速度最快（12.76秒）
+
 ## 📋 部署步驟
 
 ### 1. 提交修復

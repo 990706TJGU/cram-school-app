@@ -12,19 +12,93 @@ const __dirname = dirname(__filename)
 // 載入配置檔案
 const loadConfig = () => {
   try {
-    const configPath = join(__dirname, 'config.json')
-    const configData = readFileSync(configPath, 'utf8')
-    const config = JSON.parse(configData)
-    
-    console.log('✅ 配置檔案載入成功')
-    console.log('📋 Kintone 配置:')
-    console.log(`   Domain: ${config.kintone.domain}`)
-    console.log(`   Username: ${config.kintone.username}`)
-    console.log(`   Apps: ${JSON.stringify(config.kintone.apps)}`)
-    
-    return config
+    // 優先使用環境變數（Railway 部署）
+    if (process.env.KINTONE_DOMAIN) {
+      console.log('✅ 使用環境變數配置')
+      return {
+        kintone: {
+          domain: process.env.KINTONE_DOMAIN,
+          username: process.env.KINTONE_USERNAME,
+          password: process.env.KINTONE_PASSWORD,
+          apps: {
+            studentAuth: process.env.KINTONE_STUDENT_AUTH,
+            teacherAuth: process.env.KINTONE_TEACHER_AUTH,
+            lineBinding: process.env.KINTONE_LINE_BINDING
+          }
+        },
+        server: {
+          port: process.env.PORT || 3000,
+          cors: {
+            origins: process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : [
+              "https://cram-school-app.vercel.app",
+              "https://cram-school-app-git-main-990706tjgu.vercel.app",
+              "https://cram-school-app-990706tjgu.vercel.app"
+            ]
+          }
+        }
+      }
+    }
+
+    // 嘗試載入 config.json
+    try {
+      const configPath = join(__dirname, 'config.json')
+      const configData = readFileSync(configPath, 'utf8')
+      const config = JSON.parse(configData)
+      
+      console.log('✅ 配置檔案載入成功')
+      console.log('📋 Kintone 配置:')
+      console.log(`   Domain: ${config.kintone.domain}`)
+      console.log(`   Username: ${config.kintone.username}`)
+      console.log(`   Apps: ${JSON.stringify(config.kintone.apps)}`)
+      
+      return config
+    } catch (error) {
+      console.log('⚠️ config.json 載入失敗，嘗試 config.railway.json')
+    }
+
+    // 嘗試載入 config.railway.json
+    try {
+      const configPath = join(__dirname, 'config.railway.json')
+      const configData = readFileSync(configPath, 'utf8')
+      const config = JSON.parse(configData)
+      
+      console.log('✅ Railway 配置檔案載入成功')
+      console.log('📋 Kintone 配置:')
+      console.log(`   Domain: ${config.kintone.domain}`)
+      console.log(`   Username: ${config.kintone.username}`)
+      console.log(`   Apps: ${JSON.stringify(config.kintone.apps)}`)
+      
+      return config
+    } catch (error) {
+      console.log('⚠️ config.railway.json 載入失敗')
+    }
+
+    // 使用預設配置
+    console.log('⚠️ 使用預設配置')
+    return {
+      kintone: {
+        domain: "yqconstruction.cybozu.com",
+        username: "Administrator",
+        password: "Yqconstruction@2024",
+        apps: {
+          studentAuth: "222",
+          teacherAuth: "224",
+          lineBinding: "225"
+        }
+      },
+      server: {
+        port: process.env.PORT || 3000,
+        cors: {
+          origins: [
+            "https://cram-school-app.vercel.app",
+            "https://cram-school-app-git-main-990706tjgu.vercel.app",
+            "https://cram-school-app-990706tjgu.vercel.app"
+          ]
+        }
+      }
+    }
   } catch (error) {
-    console.error('❌ 載入配置檔案失敗:', error.message)
+    console.error('❌ 載入配置失敗:', error.message)
     process.exit(1)
   }
 }
