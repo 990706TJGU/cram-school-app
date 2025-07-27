@@ -33,7 +33,7 @@ const StudentCalendar: React.FC = () => {
     const listData = getListData(value)
     return (
       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-        {listData.map((item, index) => (
+        {listData.map((item: any, index: number) => (
           <li key={index} style={{ marginBottom: '2px' }}>
             <Badge
               status={item.type as any}

@@ -38,23 +38,6 @@ import CourseManagement from '@/pages/admin/CourseManagement'
 function App() {
   const { user, isAuthenticated } = useAuthStore()
 
-  // 根據用戶角色決定預設路由
-  const getDefaultRoute = () => {
-    if (!isAuthenticated) return '/login'
-    
-    switch (user?.role) {
-      case 'student':
-      case 'parent':
-        return '/student/dashboard'
-      case 'teacher':
-        return '/teacher/dashboard'
-      case 'admin':
-        return '/admin/dashboard'
-      default:
-        return '/login'
-    }
-  }
-
   return (
     <>
       <Helmet>

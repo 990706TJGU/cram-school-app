@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Form, DatePicker, TimePicker, Select, Input, Button, Table, Tag, Typography, Space, InputNumber } from 'antd'
+import { Card, Form, DatePicker, TimePicker, Select, Input, Button, Table, Tag, Typography, Space, InputNumber, message } from 'antd'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -20,11 +20,11 @@ const examRequestSchema = yup.object({
   duration: yup.number().required('請輸入時長').min(1, '時長至少1小時'),
   examRange: yup.string().when('requestType', {
     is: 'exam',
-    then: yup.string().required('請填寫考試範圍'),
+    then: (schema) => schema.required('請填寫考試範圍'),
   }),
   studyContent: yup.string().when('requestType', {
     is: 'self_study',
-    then: yup.string().required('請填寫自習內容'),
+    then: (schema) => schema.required('請填寫自習內容'),
   }),
 })
 

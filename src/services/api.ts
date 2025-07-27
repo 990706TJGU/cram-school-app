@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { useAuthStore } from '@/stores/authStore'
 import { ApiResponse } from '@/types'
 
@@ -13,7 +13,7 @@ const api: AxiosInstance = axios.create({
 
 // 請求攔截器
 api.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config: InternalAxiosRequestConfig) => {
     const token = useAuthStore.getState().token
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`

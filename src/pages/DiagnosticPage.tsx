@@ -20,11 +20,11 @@ const DiagnosticPage: React.FC = () => {
       
       const data = await response.json()
       console.log('後端健康檢查成功:', data)
-      setResults(prev => ({ ...prev, health: data }))
+      setResults((prev: any) => ({ ...prev, health: data }))
       message.success('後端服務正常')
     } catch (error: any) {
       console.error('後端健康檢查失敗:', error)
-      setResults(prev => ({ ...prev, health: { error: error.message } }))
+      setResults((prev: any) => ({ ...prev, health: { error: error.message } }))
       message.error('後端服務異常')
     } finally {
       setLoading(false)
@@ -36,14 +36,14 @@ const DiagnosticPage: React.FC = () => {
     try {
       const response = await fetch('http://localhost:8000/api/test-kintone')
       const data = await response.json()
-      setResults(prev => ({ ...prev, kintone: data }))
+      setResults((prev: any) => ({ ...prev, kintone: data }))
       if (data.success) {
         message.success('Kintone 連線正常')
       } else {
         message.error('Kintone 連線失敗')
       }
     } catch (error: any) {
-      setResults(prev => ({ ...prev, kintone: { error: error.message } }))
+      setResults((prev: any) => ({ ...prev, kintone: { error: error.message } }))
       message.error('Kintone 連線異常')
     } finally {
       setLoading(false)
@@ -64,14 +64,14 @@ const DiagnosticPage: React.FC = () => {
         })
       })
       const data = await response.json()
-      setResults(prev => ({ ...prev, login: data }))
+      setResults((prev: any) => ({ ...prev, login: data }))
       if (data.success) {
         message.success('登入測試成功')
       } else {
         message.error('登入測試失敗')
       }
     } catch (error: any) {
-      setResults(prev => ({ ...prev, login: { error: error.message } }))
+      setResults((prev: any) => ({ ...prev, login: { error: error.message } }))
       message.error('登入測試異常')
     } finally {
       setLoading(false)

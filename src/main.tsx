@@ -7,7 +7,7 @@ import zhTW from 'antd/locale/zh_TW'
 import { HelmetProvider } from 'react-helmet-async'
 import { Toaster } from 'react-hot-toast'
 
-import App from './App.tsx'
+import App from './App'
 import './index.css'
 
 // 建立 Query Client

@@ -1,0 +1,24 @@
+{
+  "kintone": {
+    "domain": "yqconstruction.cybozu.com",
+    "username": "Administrator",
+    "password": "HskX3z5yxKnA",
+    "apps": {
+      "studentAuth": "222",
+      "teacherAuth": "224",
+      "lineBinding": "225"
+    }
+  },
+  "server": {
+    "port": 8000,
+    "cors": {
+      "origins": [
+        "http://localhost:3001",
+        "http://localhost:3002",
+        "http://localhost:3003",
+        "http://localhost:3004",
+        "http://localhost:3005"
+      ]
+    }
+  }
+} 
